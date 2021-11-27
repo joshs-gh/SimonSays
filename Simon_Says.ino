@@ -1,3 +1,4 @@
+// https://www.tinkercad.com/things/8UiU9b6vFgs-exquisite-bruticus/editel?tenant=circuits
 
 const int RED = 2;
 const int GREEN = 3;
@@ -12,7 +13,7 @@ const int YELLOWB = 11;
 const unsigned long INPUTTIME = 5000;
 int order[100];
 int i = 0;
-unsigned long TIME = 0;
+unsigned long TIME = 0;   // MUST NOT BE int - goes negative
 bool LOST = false;
 
 void setup()
@@ -24,7 +25,7 @@ void setup()
   pinMode(BLUE, OUTPUT);
   pinMode(YELLOW, OUTPUT);
   pinMode(PIEZO, OUTPUT);
-  pinMode(REDB, INPUT_PULLUP);
+  pinMode(REDB, INPUT_PULLUP);      // Makes it HIGH to start so we can test for LOW
   pinMode(GREENB, INPUT_PULLUP);
   pinMode(BLUEB, INPUT_PULLUP);
   pinMode(YELLOWB, INPUT_PULLUP);
@@ -35,7 +36,7 @@ void setup()
 void loop()
 {
   if (LOST) {
-    delay(10000000000);
+    delay(10000000000);  // Press Arduino reset to restart
   }
   while (true) {
     playSequence();
