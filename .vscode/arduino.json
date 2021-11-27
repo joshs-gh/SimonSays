@@ -1,3 +1,6 @@
 {
-    "board": "arduino:avr:uno"
+    "board": "arduino:avr:uno",
+    "port": "/dev/tty.usbmodem14401",
+    "programmer": "AVRISP mkII",
+    "sketch": "Simon_Says.ino"
 }
