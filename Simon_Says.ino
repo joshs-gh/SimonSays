@@ -42,7 +42,7 @@ void loop()
     playSequence();
     TIME = millis();
     for (int j=0; j < i; j++) {
-      delay(300);
+      delay(100);
       if (!userInput(order[j])) {
         Serial.println("LOST");
         LOST = true;
@@ -82,7 +82,7 @@ void playSequence() {
 
 bool userInput(int light) {
   while (true) {
-    if (millis() >= TIME + INPUTTIME + i*500) {
+    if (millis() >= TIME + INPUTTIME + i*1000) {
       Serial.println("TIME UP");
       return false;
     }
