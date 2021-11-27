@@ -1,4 +1,7 @@
 // https://www.tinkercad.com/things/8UiU9b6vFgs-exquisite-bruticus/editel?tenant=circuits
+// https://github.com/microsoft/vscode-arduino/issues/438#:~:text=On%20macOS%2C%20I%20added%20%23include%20%3CArduino.h%3E%20to%20beginning%20of%20.ino%20file%20and%20I%20filled%20c_cpp_properties.json%20content%20with%3A
+
+#include <Arduino.h>
 
 const int RED = 2;
 const int GREEN = 3;
