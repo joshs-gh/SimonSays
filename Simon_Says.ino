@@ -2,6 +2,12 @@
 // https://github.com/microsoft/vscode-arduino/issues/438#:~:text=On%20macOS%2C%20I%20added%20%23include%20%3CArduino.h%3E%20to%20beginning%20of%20.ino%20file%20and%20I%20filled%20c_cpp_properties.json%20content%20with%3A
 
 #include <Arduino.h>
+#include <LiquidCrystal_I2C.h> // library for the LCD display w/ I2C Back
+#include <Wire.h>
+
+/* initialize the library by associating each LCD interface pins with the arduino pin number it is connected to */
+// https://www.makerguides.com/character-i2c-lcd-arduino-tutorial/
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Pins A5 & A4
 
 const int RED = 2;
 const int GREEN = 3;
@@ -22,7 +28,12 @@ bool LOST = false;
 void setup()
 {
   delay(100);
+  Wire.begin(); // begin communication protocol to use two-wire communication/ I2C
   Serial.begin(9600);
+  lcd.begin(16, 2); // set up the LCD's number of columns and rows:
+  lcd.clear();      // clears the LCD screen to get started
+  lcd.backlight();  // turns on the LCD backlight
+
   pinMode(RED, OUTPUT);
   pinMode(GREEN, OUTPUT);
   pinMode(BLUE, OUTPUT);
@@ -45,6 +56,9 @@ void loop()
   }
   while (true)
   {
+    lcd.print("Level: ");
+    lcd.print(i + 1);
+    lcd.setCursor(0, 0);
     playSequence();
     TIME = millis();
     for (int j = 0; j < i; j++)
@@ -63,6 +77,8 @@ void loop()
 
 void sorry()
 {
+  lcd.setCursor(0, 1);
+  lcd.print("GAME OVER :(");
   for (int j = 600; j > 100; j -= 5)
   {
     tone(PIEZO, j);
