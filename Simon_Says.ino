@@ -119,51 +119,32 @@ bool userInput(int light)
     }
     if (digitalRead(REDB) == LOW)
     {
-      playTone(RED);
-      if (light == RED)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+      return userPressed(RED, light);
     }
     if (digitalRead(GREENB) == LOW)
     {
-      playTone(GREEN);
-      if (light == GREEN)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+      return userPressed(GREEN, light);
     }
     if (digitalRead(BLUEB) == LOW)
     {
-      playTone(BLUE);
-      if (light == BLUE)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+      return userPressed(BLUE, light);
     }
     if (digitalRead(YELLOWB) == LOW)
     {
-      playTone(YELLOW);
-      if (light == YELLOW)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
+      return userPressed(YELLOW, light);
     }
+  }
+}
+
+bool userPressed(int color, int light)
+{
+  playTone(color);
+  if (light == color)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
   }
 }
